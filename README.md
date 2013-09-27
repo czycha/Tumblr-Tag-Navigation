@@ -34,21 +34,25 @@ This is where using jQuery gives you an advantage but if you choose not to use i
 ### Without jQuery
 
     for(var x in tags) {
-     var a=document.createElement('a');
-     a.href="/tagged/"+escape(tags[x].replace(/ /g, '-'));
-     a.innerHTML=tags[x];
-     document.getElementById('navi').appendChild(a);
+     if(tags[x]!="") {
+      var a=document.createElement('a');
+      a.href="/tagged/"+escape(tags[x].replace(/ /g, '-'));
+      a.innerHTML=tags[x];
+      document.getElementById('navi').appendChild(a);
+     }
     }
 
-This goes through each element of tags [line 1], creates an `a` element [line 2], sets the element's `href` attribute to the tag's page (note that tag pages replace spaces with dashes) [line 3], set the `innerHTML` of the element to the tag [line 4], and then appends the element to the element with the id of `navi` [line 5].
+This goes through each element of tags [line 1], if the tag is valid it will continue [line 2], creates an `a` element [line 3], sets the element's `href` attribute to the tag's page (note that tag pages replace spaces with dashes) [line 4], set the `innerHTML` of the element to the tag [line 5], and then appends the element to the element with the id of `navi` [line 6].
 
 ### With jQuery
 
     jQuery.each(tags, function() {
-     jQuery('#navi').append('<a href="/tagged/'+escape(this.replace(/ /g, '-'))+'">'+this+'</a>');
+     if(this!="") {
+      jQuery('#navi').append('<a href="/tagged/'+escape(this.replace(/ /g, '-'))+'">'+this+'</a>');
+     }
     });
 
-Iterates through the tags and performs a function for each element [line 1]. The function appends to the element with the id of `navi` a hyperlink with its `href` set to the tag's page and with the `innerHTML` set to the name of tag [line 2].
+Iterates through the tags and performs a function for each element [line 1]. If the tag is valid, continues with the function [line 2]. The function appends to the element with the id of `navi` a hyperlink with its `href` set to the tag's page and with the `innerHTML` set to the name of tag [line 3].
 
 ## Step 5 - Compile the Javascript into a function
 ### Without jQuery
@@ -56,10 +60,12 @@ Iterates through the tags and performs a function for each element [line 1]. The
     function addTags() {
      var tags=document.getElementById('tags').innerHTML.replace(/,(\s*,)*/g,',').replace(/\s*,\s*/g,',').replace(/,$/,'').replace(/^\s*/,'').replace(/\s*$/,'').split(',');
      for(var x in tags) {
-      var a=document.createElement('a');
-      a.href="/tagged/"+escape(tags[x].replace(/ /g, '-'));
-      a.innerHTML=tags[x];
-      document.getElementById('navi').appendChild(a);
+      if(tags[x]!="") {
+       var a=document.createElement('a');
+       a.href="/tagged/"+escape(tags[x].replace(/ /g, '-'));
+       a.innerHTML=tags[x];
+       document.getElementById('navi').appendChild(a);
+      }
      }
     }
 
@@ -68,7 +74,9 @@ Iterates through the tags and performs a function for each element [line 1]. The
     function addTags() {
      var tags=jQuery('#tags').html().replace(/,(\s*,)*/g,',').replace(/\s*,\s*/g,',').replace(/,$/,'').replace(/^\s*/,'').replace(/\s*$/,'').split(',');
      jQuery.each(tags, function() {
-      jQuery('#navi').append('<a href="/tagged/'+escape(this.replace(/ /g, '-'))+'">'+this+'</a>');
+      if(this!="") {
+       jQuery('#navi').append('<a href="/tagged/'+escape(this.replace(/ /g, '-'))+'">'+this+'</a>');
+      }
      });
     }
 
