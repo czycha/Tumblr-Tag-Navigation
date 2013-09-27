@@ -51,7 +51,7 @@ This goes through each element of tags [line 1], creates an `a` element [line 2]
 Iterates through the tags and performs a function for each element [line 1]. The function appends to the element with the id of `navi` a hyperlink with its `href` set to the tag's page and with the `innerHTML` set to the name of tag [line 2].
 
 ## Step 5 - Compile the Javascript into a function
-## Without jQuery
+### Without jQuery
 
     function addTags() {
      var tags=document.getElementById('tags').innerHTML.replace(/,(\s*,)*/g,',').replace(/\s*,\s*/g,',').replace(/,$/,'').replace(/^\s*/,'').replace(/\s*$/,'').split(',');
@@ -63,7 +63,7 @@ Iterates through the tags and performs a function for each element [line 1]. The
      }
     }
 
-## With jQuery
+### With jQuery
 
     function addTags() {
      var tags=jQuery('#tags').html().replace(/,(\s*,)*/g,',').replace(/\s*,\s*/g,',').replace(/,$/,'').replace(/^\s*/,'').replace(/\s*$/,'').split(',');
