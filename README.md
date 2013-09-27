@@ -75,7 +75,7 @@ Iterates through the tags and performs a function for each element [line 1]. The
 ## Step 6 - Set the function to go off when the document is ready
 ### Without jQuery
 
-    window.onLoad=addTags;
+    window.onload=addTags;
 
 ### With jQuery
 
