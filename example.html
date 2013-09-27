@@ -10,7 +10,9 @@
 function addTags() {
  var tags=jQuery('#tags').html().replace(/,(\s*,)*/g,',').replace(/\s*,\s*/g,',').replace(/,$/,'').replace(/^\s*/,'').replace(/\s*$/,'').split(',');
  jQuery.each(tags, function() {
-  jQuery('#navi').append('<a href="/tagged/'+escape(this.replace(/ /g, '-'))+'">'+this+'</a>');
+  if(this!="") {
+   jQuery('#navi').append('<a href="/tagged/'+escape(this.replace(/ /g, '-'))+'">'+this+'</a>');
+  }
  });
 }
 jQuery(document).ready(addTags);
@@ -18,10 +20,12 @@ jQuery(document).ready(addTags);
 function addTags() {
  var tags=document.getElementById('tags').innerHTML.replace(/,(\s*,)*/g,',').replace(/\s*,\s*/g,',').replace(/,$/,'').replace(/^\s*/,'').replace(/\s*$/,'').split(',');
  for(var x in tags) {
-  var a=document.createElement('a');
-  a.href="/tagged/"+escape(tags[x].replace(/ /g, '-'));
-  a.innerHTML=tags[x];
-  document.getElementById('navi').appendChild(a);
+  if(tags[x]!="") {
+   var a=document.createElement('a');
+   a.href="/tagged/"+escape(tags[x].replace(/ /g, '-'));
+   a.innerHTML=tags[x];
+   document.getElementById('navi').appendChild(a);
+  }
  }
 }
 window.onload=addTags;
