@@ -1,7 +1,7 @@
 Tumblr-Tag-Navigation
 =====================
 
-How to add user-defined tags to the navigation of a Tumblr theme.
+How to add user-defined tags to the navigation of a Tumblr theme. Check the example.html for a simple but compiled version of this.
 
 ## Step 1 - Create a Tumblr text variable
 
